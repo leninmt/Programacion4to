@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { user } from 'src/interfaz/user.interfaz';
 
 
@@ -7,64 +7,70 @@ export class UserService {
     usuario: user[] = [
         {
             id: 1,
-            nombre: "josue",
+            nombre: "Lenin",
             carrera: "software"
 
 
         },
         {
             id: 2,
-            nombre: "jhon",
+            nombre: "Pepe",
             carrera: "software"
 
 
         },
         {
             id: 3,
-            nombre: "tanya",
-            carrera: "gastronomia"
+            nombre: "Pipp",
+            carrera: "Moda"
 
 
         },
         {
             id: 4,
-            nombre: "Ramon",
-            carrera: "software"
+            nombre: "Jose",
+            carrera: "marketing"
 
 
         },
         {
             id: 5,
-            nombre: "pepe",
-            carrera: "contro_incendiaos"
+            nombre: "Rodrigo",
+            carrera: "Arte Culinaria"
 
 
         },
 
     ]
 
-    find_user_by_id(id) {
-        let res
+
+    find_user_by_id(@Param('id')id : number){
+        return this.usuario.find(objeto => objeto.id === id)
+    }
+
+
+    // find_user_by_id(id) {
+    //     let res
       
-        if(!isNaN(id)){
-            const a =  parseInt(id)
-            res = this.usuario.find(objeto => objeto.id === a);
-        }
-        else if (typeof id === "string") {
-            res = this.usuario.find(objeto => objeto.nombre === id);
+    //     if(!isNaN(id)){
+    //         const a =  parseInt(id)
+    //         res = this.usuario.find(objeto => objeto.id === a);
+    //     }
+    //     else if (typeof id === "string") {
+    //         res = this.usuario.find(objeto => objeto.nombre === id);
 
 
            
 
-        }
-        if(!res){
-            throw new NotFoundException("No existe")
-        }
+    //     }
+    //     if(!res){
+    //         throw new NotFoundException("No existe")
+    //     }
 
-        return res
+    //     return res
 
 
-    }
+    // }
 
     all_users() {
         return this.usuario
