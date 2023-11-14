@@ -8,9 +8,9 @@ export class UserController {
 
     }
 @Get(':id')
-    find_user_by_id(@Param('id' ) id){
+    find_user_by_id(@Param('id', ParseIntPipe ) id, ){
     
-return this.user.find_user_by_id(+id)
+return this.user.find_user_by_id(id)
 
     }
 @Get()

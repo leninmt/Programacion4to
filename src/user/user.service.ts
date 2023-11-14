@@ -45,7 +45,10 @@ export class UserService {
 
 
     find_user_by_id(@Param('id')id : number){
-        return this.usuario.find(objeto => objeto.id === id)
+       let dato = this.usuario.find(objeto => objeto.id === id)
+       if(!dato)
+       throw new NotFoundException("No existe");
+    return dato;
     }
 
 
