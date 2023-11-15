@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Param } from '@nestjs/common';
+import { Body, Injectable, NotFoundException, Param, Post } from '@nestjs/common';
 import { user } from 'src/interfaz/user.interfaz';
 
 
@@ -52,33 +52,20 @@ export class UserService {
     }
 
 
-    // find_user_by_id(id) {
-    //     let res
-      
-    //     if(!isNaN(id)){
-    //         const a =  parseInt(id)
-    //         res = this.usuario.find(objeto => objeto.id === a);
-    //     }
-    //     else if (typeof id === "string") {
-    //         res = this.usuario.find(objeto => objeto.nombre === id);
-
-
-           
-
-    //     }
-    //     if(!res){
-    //         throw new NotFoundException("No existe")
-    //     }
-
-    //     return res
-
-
-    // }
 
     all_users() {
         return this.usuario
     }
 
-
+    create_user(userData: any) {
+        const newUser = {
+          id: this.usuario.length + 1,
+          ...userData,
+        };
+    
+        this.usuario.push(newUser);
+    
+        return newUser;
+    }
 
 }

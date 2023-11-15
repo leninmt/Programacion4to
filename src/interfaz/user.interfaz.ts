@@ -1,7 +1,7 @@
 export interface user { 
-    id:Number
-    nombre:String, 
-    carrera :string
+    id:Number;
+    nombre:String;
+    carrera :string;
 
 
 
